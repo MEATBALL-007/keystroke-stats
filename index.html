@@ -203,6 +203,26 @@
   .verify-bad{color:#ff6b6b}
 
   /* ---------- Print ---------- */
+
+  /* ---------- QR share block ---------- */
+  .qr-share{
+    margin-top:26px;border:1px solid var(--line);border-radius:16px;
+    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
+    padding:24px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;
+    position:relative;overflow:hidden;
+  }
+  .qr-share::before{content:"";position:absolute;inset:0;border-radius:16px;
+    box-shadow:inset 0 0 0 1px rgba(255,199,44,.22),0 0 42px -22px var(--glow);pointer-events:none}
+  .qr-box{background:#fff;padding:16px;border-radius:14px;flex:none;box-shadow:0 0 34px -12px var(--glow)}
+  .qr-img{display:block;width:240px;height:240px;image-rendering:pixelated;image-rendering:crisp-edges}
+  .qr-text{flex:1;min-width:230px}
+  .qr-text h2{font-family:var(--font-head);font-weight:600;font-size:25px;margin:6px 0 8px}
+  .qr-text p{color:var(--muted);margin:0 0 16px;font-size:14.5px}
+  .qr-url{display:inline-block;font-family:var(--font-mono);font-size:14px;color:var(--yellow);
+    border:1px solid rgba(255,199,44,.30);background:rgba(255,199,44,.08);
+    padding:9px 15px;border-radius:9px;text-decoration:none;word-break:break-all}
+  .qr-url:hover{filter:brightness(1.12)}
+
   @media print{
     @page{margin:14mm}
     body{background:#fff !important;color:#111 !important;font-size:12px}
@@ -225,6 +245,13 @@
     .modal-badge{background:#333 !important;color:#fff !important}
     .method,.section,.card{break-inside:avoid}
     a{color:#111 !important}
+    .qr-share{background:#fff !important;border:1px solid #bbb !important;box-shadow:none !important}
+    .qr-share::before{display:none}
+    .qr-box{box-shadow:none !important;border:1px solid #333;background:#fff !important}
+    .qr-text h2{color:#111 !important}
+    .qr-text p{color:#444 !important}
+    .qr-url{color:#a83a12 !important;background:#f5f5f5 !important;border-color:#333 !important}
+    .qr-share{break-inside:avoid}
     footer{color:#444 !important}
   }
 </style>
@@ -259,6 +286,20 @@
       พิมพ์ / บันทึกเป็น PDF
     </button>
   </div>
+
+  <!-- ================= QR / SHARE ================= -->
+  <section class="qr-share">
+    <div class="qr-box">
+      <img class="qr-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAewAAAHsAQAAAAA4UaPNAAADbElEQVR4nO2dS27rMAxFKSJzewdv/8vqDuwVsCCpD12kE2rwouoeBIWi+gBWw7K0LLlFaIKbZ2wi6Gk4ryrQ03BeVaCn4byqQE/DeVWBnobzqgI9DedVBXoazqsKdCqdk+gu+vL+s37Lex6HfczJZ+G0aUBfXD/E8TYdUoPfv3VR+Wc98bDPOfkknBUd6Ivqr97S+D6u3hBrCJFY5PvXeNj6Y2fom8f84LgKUbGw9yDX+D/kz42doW+pv970xcTeEj7dRf7a2Bn65jEvobe2j0tD/T719e4wWnvsDH1LnZ7XpPUC9tdXOEy5lh47Q985z8uP7nbFWouc9lb+1NgZ+s56afPw5SS5LNvfRS6SL6vt2x+C5+Q8fcjJZ+G0aUBfvLY56ksDvs3J91DXdns7DhDUNjPwlE3QZ2NeelR70d6Cv3fG34tg8cpjZ+i735M6hGx+Ru5zTMu3iUqdtPSqPpT6tPbYGfqWOtXaxtue22NKbxk+Fjae/BXk+Tw84RL0GcTo4V3xqLaCp5Xuo8gJnbzxj46hr17biH0teh/qlDYVXw6p5Y016nqbMWm59NgZ+ubXsOTttnxs9IS0P65wHeT5PDzhEvQZpEZvm5Zvs5S9c1Q+16PgVxDzeXjCJegziIQSPZTxb2r7fhnbi3/EfB6ecAn6DBJiO8699/aYuul/CzA/v/znztCJdCdUDfLbNgP6ejNP7L4x0JccxDZ9ysmn4JzWgL78vA3ZCvk+ReM7pGy3iBbx+rYdWA9bfuwMfUudflQynbr8IBY2z0UICur5PDzhEvQZxBhlTKTfjWpXuFXBfdjlP3feWKcR88ebyZm+T2SsOsC6ygr05WNenmlcW2GuJu6lwtoDA/ra17DSZmnqAsuGLzwY22PtktYXJKw/doa+pU41z3dabh9pvx+A9fMPmKZg6P+/tjF+3+79rHAO71x67Ax9S51GqPdM7v0/KvnwW4B63oC+dj3/wB/N53emfIdUf9CTV/io55f/3Hlj/fWmL9x+Hevn2zP9+nMs1x87Q99cl76K3hbYyJc966P3kD3345C6FOfDTj4F57QG9MXz/D0iWXN72BVVH9B6n17q2KP8CvI8QV9VL/gfalk4bRrQ03BeVaCn4byqQE/DeVWBnobzqgI9DedVBXoazqsK9DST96S+AXyT3JJQiFW9AAAAAElFTkSuQmCC" alt="QR code สแกนเพื่อเปิดหน้าสรุปงานสถิติ Keystroke"
+           width="240" height="240">
+    </div>
+    <div class="qr-text">
+      <div class="kicker">// scan to open</div>
+      <h2>สแกนเพื่อเปิดหน้านี้</h2>
+      <p>สแกน QR เพื่อเปิดหน้าสรุปงานสถิติ Keystroke บนมือถือ หรือแชร์ให้เพื่อน — เปิดได้ทันทีทั้งบนจอและกระดาษที่พิมพ์ออกมา</p>
+      <a class="qr-url" href="https://meatball-007.github.io/keystroke-stats/">meatball-007.github.io/keystroke-stats</a>
+    </div>
+  </section>
 
   <!-- ================= 01 SUMMARY CARDS ================= -->
   <section class="section">
